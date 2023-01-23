@@ -21,3 +21,129 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# TESTERRRR
+import {
+  ChakraProvider,
+  Box,
+  theme,
+  Container,
+  InputElementProps,
+} from "@chakra-ui/react";
+// import { Editor } from "@tinymce/tinymce-react";
+import { ChangeEvent, useEffect, useState } from "react";
+// import { Editor as TinyMCEEditor } from "tinymce";
+
+import { EditorState, Modifier, AtomicBlockUtils } from "draft-js";
+import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+export const App = () => {
+  const [editorState, setEditorState] = useState<any>(null);
+
+  const sendTextToEditor = (text: any) => {
+    setEditorState(insertText(text, editorState));
+  };
+  useEffect(() => {
+    console.log("editorState: ", editorState);
+  }, [editorState]);
+
+  useEffect(() => {
+    setEditorState(EditorState.createEmpty());
+  }, []);
+
+  // const [editorValue, setEditorValue] = useState("");
+  // const [currentNode, setCurrentNode] = useState<any>(null);
+  // const [, setPicture] = useState<string>("");
+
+  // const handleEditorChange = (content: string, editor: TinyMCEEditor) => {
+  //   setEditorValue(content);
+  //   setCurrentNode(editor?.selection?.getSel());
+  //   console.log("content", content);
+  //   console.log("text", editor?.getContent({ format: "text", getInner: true }));
+  //   console.log("html", editor?.getContent({ format: "html" }));
+  //   console.log("raw", editor?.getContent({ format: "raw" }));
+  //   console.log("selection", editor?.selection?.getRng());
+  //   console.log("selection", editor?.insertContent?.getRng());
+  // };
+
+  // const handleImagePlacement = (e: any) => {
+  //   const currentNodeContent =
+  //     currentNode?.anchorNode?.innerHTML || currentNode?.anchorNode?.nodeValue;
+
+  //   setPicture(URL.createObjectURL(e as any));
+
+  //   setEditorValue((prev) => {
+  //     return prev + `<img src="${URL.createObjectURL(e)}" />`;
+  //   });
+  // };
+
+  const onChange = async (value: any) => {
+    setEditorState(value);
+  };
+  const insertText = (text: any, editorValue: any) => {
+    const currentContent = editorValue.getCurrentContent();
+    const currentSelection = editorValue.getSelection();
+
+    const newContent = Modifier.replaceText(
+      currentContent,
+      currentSelection,
+      text
+    );
+
+    const newEditorState = EditorState.push(
+      editorValue,
+      newContent,
+      "insert-fragment"
+    );
+    return EditorState.forceSelection(
+      newEditorState,
+      newContent.getSelectionAfter()
+    );
+  };
+
+  const insertImage = (url: string) => {
+    const contentState = editorState.getCurrentContent();
+    const contentStateWithEntity = contentState.createEntity(
+      "IMAGE",
+      "IMMUTABLE",
+      { src: url }
+    );
+    const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+    const newEditorState = EditorState.set(editorState, {
+      currentContent: contentStateWithEntity,
+    });
+    onChange(AtomicBlockUtils.insertAtomicBlock(newEditorState, entityKey, "")); //Update the editor state
+  };
+  return (
+    <ChakraProvider theme={theme}>
+      <Container textAlign="center" fontSize="xl" minH="100vh" p={3}>
+        <input
+          style={{ width: "100px", padding: "20px", color: "red" }}
+          placeholder="Choose picture"
+          type="file"
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            // handleImagePlacement(e?.target?.files && e?.target?.files[0]);
+            const imageItem = e?.target?.files && e?.target?.files[0];
+            const imageElm = (
+              <img
+                src="https://i.ytimg.com/vi/LNm0SFYJMrc/maxresdefault.jpg"
+                alt=""
+                width="200px"
+                height="200px"
+              />
+            );
+            insertImage("https://i.ytimg.com/vi/LNm0SFYJMrc/maxresdefault.jpg");
+          }}
+        />
+        {editorState && (
+          <Editor
+            editorState={editorState}
+            onEditorStateChange={(value) => {
+              onChange(value);
+            }}
+          />
+        )}
+      </Container>
+    </ChakraProvider>
+  );
+};

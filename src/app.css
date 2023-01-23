@@ -1,0 +1,17 @@
+.mce-content-body {
+    padding: 20px;
+    min-height: 500px;
+    text-align: left;
+    font-size: 14px;
+    background-color: #FAFAFA;
+}
+
+.mce-content-body:not([dir=rtl])[data-mce-placeholder]:not(.mce-visualblocks)::before {
+    left: 20px !important;
+    color: #CACACA;
+
+}
+
+#toolbarElm {
+    transform: scale(0.75);
+}
