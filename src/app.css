@@ -10,7 +10,7 @@ height: 100%;
 .mce-content-body {
     padding: 20px;
     min-height: 500px;
-    max-height: 700px;
+    max-height: 600px;
     overflow-y: scroll;
     text-align: left;
     font-size: 14px;
