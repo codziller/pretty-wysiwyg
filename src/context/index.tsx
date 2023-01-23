@@ -15,6 +15,10 @@ const contextDefaultValues: AppContextState = {
   setVideo: () => {},
   social: "",
   setSocial: () => {},
+  videoCode: "",
+  setVideoCode: () => {},
+  socialCode: "",
+  setSocialCode: () => {},
 };
 
 export const AppContext = createContext<AppContextState>(contextDefaultValues);
@@ -22,6 +26,8 @@ const AppContextProvider = ({ children }: Props) => {
   const [image, setImage] = useState(contextDefaultValues.image);
   const [video, setVideo] = useState(contextDefaultValues.image);
   const [social, setSocial] = useState(contextDefaultValues.image);
+  const [videoCode, setVideoCode] = useState(contextDefaultValues.image);
+  const [socialCode, setSocialCode] = useState(contextDefaultValues.image);
   const [modalType, setModalType] = useState(contextDefaultValues.modalType);
   return (
     <AppContext.Provider
@@ -32,6 +38,10 @@ const AppContextProvider = ({ children }: Props) => {
         setModalType,
         video,
         setVideo,
+        videoCode,
+        setVideoCode,
+        socialCode,
+        setSocialCode,
         social,
         setSocial,
       }}

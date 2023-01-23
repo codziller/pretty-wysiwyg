@@ -11,9 +11,10 @@ import { AppContext } from "context";
 import { MODAL_VIEWS } from "utils/constants";
 import ImageUpload from "./imageUpload";
 import VideoUpload from "./videoUpload";
+import SocialUpload from "./socialUpload";
 
 const ModalComponent = () => {
-  const { PICTURE, VIDEO } = MODAL_VIEWS;
+  const { PICTURE, VIDEO, SOCIAL } = MODAL_VIEWS;
   const { modalType, setModalType } = useContext(AppContext);
   return (
     <Modal size="2xl" isOpen={!!modalType} onClose={() => setModalType(null)}>
@@ -29,6 +30,8 @@ const ModalComponent = () => {
             <ImageUpload />
           ) : modalType === VIDEO ? (
             <VideoUpload />
+          ) : modalType === SOCIAL ? (
+            <SocialUpload />
           ) : null}
         </ModalBody>
       </ModalContent>

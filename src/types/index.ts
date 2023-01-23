@@ -8,4 +8,8 @@ export type AppContextState = {
   setVideo: (video: string) => void;
   social: string;
   setSocial: (social: string) => void;
+  videoCode: string;
+  setVideoCode: (social: string) => void;
+  socialCode: string;
+  setSocialCode: (social: string) => void;
 };
