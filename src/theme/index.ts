@@ -5,8 +5,13 @@ const theme = extendTheme({
     black: {
       text: "#343E37",
       light: "#333333",
+      dark:"#010E05"
     },
-
+    grey: {
+      border: "#CEE3D4",
+      light: "#FAFAFA",
+      placeholder:"#CACACA"
+    },
     green: {
       primary: "#212121",
       light: "#E7F1E9",
@@ -14,6 +19,7 @@ const theme = extendTheme({
       "hover-button": "08521d",
       "hover-light": "#b3c1b6",
       hover: "#F7FCF8",
+      border: "#6CAA7D",
     },
   },
   fonts: {
