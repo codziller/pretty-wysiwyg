@@ -4,4 +4,8 @@ export type AppContextState = {
   setImage: (image: string) => void;
   modalType: ModalType;
   setModalType: (modalType: ModalType) => void;
+  video: string;
+  setVideo: (video: string) => void;
+  social: string;
+  setSocial: (social: string) => void;
 };

@@ -3,28 +3,27 @@ import { AiFillPicture } from "react-icons/ai";
 import { TiVideo } from "react-icons/ti";
 import { TiSocialFlickr } from "react-icons/ti";
 
-import { Box, Button, Flex, SlideFade, Text, VStack } from "@chakra-ui/react";
-import { MODAL_VIEWS } from "utils/constants";
+import { Box, Button, Flex, SlideFade, Text } from "@chakra-ui/react";
 import { AppContext } from "context";
+import { ModalType } from "types";
 
 type Props = { showMenu: boolean };
-type MenuItem = { title: string; label: string; icon: ReactElement };
-const { PICTURE, VIDEO, SOCIAL } = MODAL_VIEWS;
+type MenuItem = { title: ModalType; label: string; icon: ReactElement };
 const ContextMenu = ({ showMenu }: Props) => {
   const { setModalType } = useContext(AppContext);
   const menuItems: MenuItem[] = [
     {
-      title: PICTURE,
+      title: "Picture",
       label: "Jpeg, png",
       icon: <AiFillPicture color="#343E37" />,
     },
     {
-      title: VIDEO,
+      title: "Video",
       label: "JW player, Youtube, Vimeo",
       icon: <TiVideo color="#343E37" />,
     },
     {
-      title: SOCIAL,
+      title: "Social",
       label: "Instagram, Twitter, TikTok, Snapchat, Facebook",
       icon: <TiSocialFlickr color="#343E37" />,
     },
@@ -70,7 +69,7 @@ const ContextMenu = ({ showMenu }: Props) => {
               justifyContent="flex-start"
               alignItems="flex-start"
               gap="10px"
-              onClick={() => setModalType("Picture")}
+              onClick={() => setModalType(title)}
               rounded="none"
             >
               <Box mt="-3.5px"> {icon}</Box>

@@ -16,9 +16,9 @@ import { AppContext } from "context";
 import ModalComponent from "components/modal";
 
 export const App = () => {
-  const { image } = useContext(AppContext);
+  const { image, video } = useContext(AppContext);
 
-  const [editorValue, setEditorValue] = useState("");
+  const [editorValue, setEditorValue] = useState(``);
   const [editorRawValue, setEditorRawValue] = useState("");
   const [currentNode, setCurrentNode] = useState<any>(null);
   const [showContext, setShowContext] = useState<boolean>(false);
@@ -32,6 +32,13 @@ export const App = () => {
   useEffect(() => {
     image && editorRef?.current?.insertContent(`<img src="${image}" />`);
   }, [image]);
+
+  useEffect(() => {
+    video &&
+      editorRef?.current?.insertContent(`<video width="640" height="480" 
+    src="${video}" 
+    controls>`);
+  }, [video]);
 
   const getWOrdCount = (): number => {
     const wordCountByNewLine = editorRawValue
