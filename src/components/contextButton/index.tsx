@@ -1,6 +1,6 @@
-import { useCallback, CSSProperties, useState } from "react";
+import { CSSProperties, useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
-import { Box, Button, Flex, VStack } from "@chakra-ui/react";
+import { Button, Flex } from "@chakra-ui/react";
 import ContextMenu from "components/contextMenu";
 
 type Props = {
@@ -23,7 +23,6 @@ const ContextButton = ({ isDisplayed, style, onClick }: Props) => {
       gap="5px"
       onMouseEnter={() => setShowMenu(true)}
       onMouseLeave={() => setShowMenu(false)}
-     
     >
       <Button
         w="32px"

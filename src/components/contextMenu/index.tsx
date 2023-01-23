@@ -1,4 +1,4 @@
-import { ReactElement, useContext, useEffect, useState } from "react";
+import { ReactElement, useContext } from "react";
 import { AiFillPicture } from "react-icons/ai";
 import { TiVideo } from "react-icons/ti";
 import { TiSocialFlickr } from "react-icons/ti";

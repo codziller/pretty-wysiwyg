@@ -1,11 +1,9 @@
 import {
   Box,
   ChakraProvider,
-  Container,
   Flex,
   Input,
   Progress,
-  Spinner,
   Text,
 } from "@chakra-ui/react";
 import { Editor } from "@tinymce/tinymce-react";
@@ -21,12 +19,12 @@ import Button from "components/button";
 export const App = () => {
   const { image, videoCode, socialCode } = useContext(AppContext);
 
+  const editorRef = useRef<any>(null);
+
   const [editorValue, setEditorValue] = useState(``);
   const [editorRawValue, setEditorRawValue] = useState("");
   const [currentNode, setCurrentNode] = useState<any>(null);
   const [showContext, setShowContext] = useState<boolean>(false);
-
-  const editorRef = useRef<any>(null);
 
   const handleEditorChange = (content: string, editor: TinyMCEEditor) => {
     setEditorValue(content);
