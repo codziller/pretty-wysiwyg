@@ -58,6 +58,7 @@ const ContextMenu = ({ showMenu }: Props) => {
           </Text>
           {menuItems.map(({ title, label, icon }) => (
             <Button
+              key={title}
               w="full"
               py="10px"
               bg="green.fade"

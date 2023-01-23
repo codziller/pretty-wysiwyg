@@ -1,9 +1,22 @@
+html,
+body {
+    font-family: 'Open Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    height: 100%;
+}
+#root{
+height: 100%;
+}
+
 .mce-content-body {
     padding: 20px;
     min-height: 500px;
+    max-height: 700px;
+    overflow-y: scroll;
     text-align: left;
     font-size: 14px;
+    width: 100%;
     background-color: #FAFAFA;
+    cursor: text;
 }
 
 .mce-content-body:not([dir=rtl])[data-mce-placeholder]:not(.mce-visualblocks)::before {
